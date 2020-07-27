@@ -1,0 +1,390 @@
+<!DOCTYPE html>
+<html>
+<head>
+    <meta charset="utf-8">
+    <title>Home</title>
+    <script type="text/javascript" src="app.js"></script>
+    <meta name="viewport" content="width=device-width,initial-scale=1">
+    
+    <!-- theme browser bar -->
+    <meta name="theme-color" content="#000000">
+        
+    <!-- don't forget a manifest ! -->
+    <link rel="manifest" href="manifest.json">
+    
+    <!-- apple touch icon ! -->
+    <link rel="apple-touch-icon" href="/example.png">
+    <link href="https://fonts.googleapis.com/css2?family=Roboto:wght@400;500;700&display=swap" rel="stylesheet">
+    <script>
+        if(document.cookie.includes('authcookie=ok')){
+            document.location.assign('/pwa/contracts.html   ')
+        }
+    </script>
+    <style>
+        html, body {
+            margin: 0;
+            height: 100%;
+        }
+
+        /* text: #27a4ab */
+        /* button: #00949c */
+
+        body{
+            background-color: #263746;
+            display: flex;
+            flex-direction: column;
+            align-items: center;
+            align-content: center;
+            justify-content: center;
+            font-family: Roboto, Tahoma, sans-serif;
+        }
+
+        #logincontainer, #errorContainer{
+            display: flex;
+            flex-direction: column;
+            border-radius: 8px;
+            background-color: #ffffff;
+        }
+
+        #errorContainer{
+            margin-top: 8px;
+            background-color: rgb(253, 236, 234);
+            font-size: 14px;
+        }
+
+        #loginTitle{
+            flex-direction: column;
+            display: flex;
+            align-content: center;
+            align-items: center;
+            justify-content: center;
+        }
+
+        #loginbody, #logintail {
+            width: 100%;
+            display: flex;
+            flex-direction: column;
+            align-items: center;
+            align-content: center;
+        }
+
+        #loginbody>div{
+            width: 70%;
+            position: relative;
+            display: flex;
+        }
+        #logintail>div{
+            width: 70%;
+            position: relative;
+            display: block;
+        }
+
+        #loginid{
+            width: 100%;
+        }
+
+        #loginpass{
+            width: 100%;
+            padding-right: 45px;
+        }
+
+        #signin{
+            width: 100%;
+            line-height: 34px;
+            background-color: #00949c;
+            border: 1px solid #00949c;
+            border-radius: 5px;
+            color: #fff;
+            margin: 12px 0px 10px 0px;
+        }
+
+        #hideEye{
+            width: 22px;
+            height: 22px;
+            position: absolute;
+            display: inline-block;
+            right: 10px;
+            top: 12px;
+            opacity: 0.3;
+        }
+
+        #hideEye:hover{
+            opacity: 1;
+        }
+
+        #tandclabel{
+            margin-right: 8px;
+            margin-left: 0px;
+        }
+
+        a, a:visited{
+            text-decoration: none;
+            color: #27a4ab;
+        }
+
+        .heading1{
+            font-weight: 700;
+            font-size: 24px;
+            letter-spacing: -1px;
+        }
+        .assistText{
+            font-size: 12px;
+        }
+        #langSelect{
+            border: 0;
+            color: #27a4ab;
+            outline: none;
+            float: right;
+            text-align-last: right;
+        }
+        #langSelect>option{
+            color: 27a4ab;
+            outline: none;
+            border: 0;
+            text-align: right;
+        }
+        input:invalid{
+            border: 1px solid red;
+            outline:solid;
+        }
+        input[type=text], input[type=password] {
+            text-decoration: none;
+            border: 0px;
+            border-bottom: 2px solid rgba(215, 215, 215, 0.7);
+            outline: none;
+            line-height: 38px;
+            font-size: 18px;
+            width: 200px;
+            margin: 5px 0 5px 0px;
+        }
+
+        input[type=text]::placeholder, input[type=password]::placeholder{
+            color: #c9c9c9;
+            font-size: 15px;
+            font-weight: 500;
+        }
+
+        input[type=text]:focus, input[type=password]:focus{
+            border: 0px;
+            outline: none;
+            border-bottom: 1px solid black;
+        }
+        input[type="checkbox"] {
+            opacity: 0;
+        }
+        input[type="checkbox"] + label:before {
+            border: 2px solid #00949c;
+            content: "\00a0";
+            display: inline-block;
+            font: 12px/1em Roboto;
+            height: 12px;
+            margin: 2px 10px 0 0;
+            padding: 0;
+            vertical-align: top;
+            width: 12px;
+        }
+        input[type="checkbox"]:checked + label:before {
+            background: #fff;
+            color: #333;
+            content: "\2713";
+            text-align: center;
+        }
+        input[type="checkbox"]:checked + label:after {
+            font-weight: bolder;
+        }
+
+        input[type="checkbox"]:focus + label::before {
+            outline: rgb(59, 153, 252) auto 5px;
+        }
+
+        /* Extra small devices (phones, 600px and down) */
+        @media only screen and (max-width: 600px){
+            #logincontainer, #errorContainer{
+                padding: 20px 0px 20px 0px;
+            }
+        }
+
+        /* Small devices (portrait tablets and large phones, 600px and up) */
+        @media only screen and (min-width: 600px){
+            #logincontainer{
+                padding: 20px 0px 20px 0px;
+                width: 50%;
+            }
+
+            #errorContainer{
+                width: 50%;
+            }
+        }
+
+        /* Medium devices (landscape tablets, 768px and up) */
+        @media only screen and (min-width: 768px) {
+            #logincontainer{
+                padding: 20px 0px 20px 0px;
+                width: 50%;
+            }
+
+            #errorContainer{
+                width: 50%;
+            }
+        } 
+
+        /* Large devices (laptops/desktops, 992px and up) */
+        @media only screen and (min-width: 992px) {
+            #logincontainer{
+                padding: 20px 0px 20px 0px;
+                width: 50%;
+            }
+
+            #errorContainer{
+                width: 50%;
+            }
+        } 
+
+        /* Extra large devices (large laptops and desktops, 1200px and up) */
+        @media only screen and (min-width: 1362px) {
+            #logincontainer{
+                width: 35%;
+                height: 350px;
+            }
+
+            #errorContainer{
+                width: 35%;
+            }
+
+            #loginTitle{
+                height: 30%;
+            }
+
+            #loginbody{
+                height: 60%;
+            }
+
+            .flexitem{
+                display: flex;
+
+            }
+        }
+    </style>
+</head>
+<body>
+</body>
+</html>
+    <div id="logincontainer">
+        <form id="loginForm">
+        <div id="loginTitle">
+            <div>
+                <span class="heading1">Portal</span>
+            </div>
+        </div>
+        <div id="loginbody">
+            <div id="loginiddiv">
+                <input type="text" required  pattern="^[a-zA-Z0-9]{3,12}$" value="" placeholder="Username" id="loginid" tabindex="1">
+            </div>
+            <div>
+                <input type="password" required pattern="^[a-zA-Z0-9_$.@]{3,20}$" value="" placeholder="Password" id="loginpass" tabindex="2">
+                <img id="hideEye" src="/pwa/images/hide-eye_64b.png" alt="">
+            </div>
+            <div style="margin-top: 18px;margin-left: -36px;">
+                <input type="checkbox" required name="tandc" id="tandc" tabindex="3" >
+                <label id="tandclabel" for="tandc">I agree to <a href="" tabindex="4">Terms and Conditions</a></label>
+            </div>
+        </div>
+        <div id="logintail">
+            <div>
+                <input type="submit" value="SIGN IN" id="signin" tabindex="5">
+            </div>
+            <div>
+                <a href="forgotPass.html" tabindex="6" class="assistText">Forgot Password</a>
+                <select name="langSelect" id="langSelect" class="assistText" tabindex="7">
+                    <option value="">English</option>
+                    <option value="">Potuguese</option>
+                </select>
+            </div>
+        </div>
+        </form>
+    </div>
+    <div id="errorContainer" style="display: none;">
+        <div>
+            <ul id="errorList">
+            </ul>
+        </div>
+    </div>
+<script>
+function addErrs(errs){
+    if (errs.constructor === Array){
+        var econ = document.getElementById('errorContainer');
+        econ.style.display = 'flex';
+        var errl = document.getElementById('errorList');
+        errs.forEach((err) => {
+            var item = document.createElement('li');
+            item.innerText = err;
+            errl.append(item)
+        })
+    }
+}
+
+function addCookie(){
+    var now = new Date();
+    var time = now.getTime();
+    var expireTime = time + 1000*36000;
+    now.setTime(expireTime);
+    document.cookie = 'authcookie=ok;expires='+now.toGMTString()+';path=/';
+    //console.log(document.cookie);
+}
+
+function deleteCookie(){
+    var now = new Date();
+    var time = now.getTime();
+    document.cookie = 'authcookie=ok;expires='+now.toGMTString()+';path=/';
+}
+
+window.addEventListener("load", () => {
+
+    // on submit
+    document.getElementById('loginForm').addEventListener("submit", (e) => {
+        e.preventDefault(); // before the code
+        // document.getElementById('errorList').children.
+        var id = document.getElementById('loginid');
+        var pass = document.getElementById('loginpass');
+        var tc = document.getElementById('tandc');
+        var errs = [];
+        var id_re = new RegExp(/^[a-zA-Z0-9]{3,12}$/,'ig')
+        var pass_re = new RegExp(/^[a-zA-Z0-9_$.@]{3,20}$/,'ig');
+        if(!id_re.test(id.value)){
+            errs.push('Please enter proper id');
+        }
+        if(!pass_re.test(pass.value)){
+            errs.push('Please enter proper password');
+        }
+        if(!tc.checked){
+            errs.push('Plese agree to the terms and conditions');
+        }
+        if(errs.length > 0){
+            addErrs(errs);
+        }else{
+            if(String(id.value) === 'user' && String(id.value) === 'password'){
+                addCookie()
+                window.location.assign('/pwa/contracts.html')
+            }else{
+                errs = ['No such user'];
+                addErrs(errs);
+            }
+        }
+    })
+})
+
+document.getElementById('hideEye').onclick = (e) => {
+    if (document.getElementById('loginpass').type === 'password'){
+        document.getElementById('loginpass').type = 'text';
+        e.target.src = 'http://localhost:9000/pwa/images/show-eye_64b.png';
+    }else{
+        document.getElementById('loginpass').type = 'password';
+        e.target.src = 'http://localhost:9000/pwa/images/hide-eye_64b.png';
+    }
+}
+
+// test standalone mode
+window.addEventListener('load', function() {
+    console.log(window.IS_STANDALONE);
+});
+</script>
