@@ -1,0 +1,17 @@
+html, body {
+    margin: 0;
+    height: 100%;
+}
+
+/* text: #27a4ab */
+/* button: #00949c */
+
+body{
+    background-color: #263746;
+    display: flex;
+    flex-direction: column;
+    align-items: center;
+    align-content: center;
+    justify-content: center;
+    font-family: Roboto, Tahoma, sans-serif;
+}

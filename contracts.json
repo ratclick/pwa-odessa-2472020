@@ -1,0 +1,73 @@
+{   "fields": {
+        "id": "Contract #",
+        "pr_type": "Product Type",
+        "commencement_dt": "Commencement date",
+        "term": "Term (in months)",
+        "maturity_dt": "Maturity Date",
+        "pay_amt": "Payment Amount",
+        "status": "Status",
+        "pay_frq": "Payment Frequency",
+        "principal_bal": "Principal balance",
+        "interest_bal": "Interest balance",
+        "total_bal": "Total balance",
+        "pay_remaining": "Payments remaining"
+    },
+    "contracts": [
+        {
+            "id": "123-2",
+            "pr_type": "Equipment Lease",
+            "commencement_dt": "11/08/2020",
+            "term": 8,
+            "maturity_dt": "03/14/2021",
+            "pay_amt": "175,582.15 USD",
+            "status": "approved",
+            "pay_frq": "monthly",
+            "principal_bal": "121,511.48 USD",
+            "interest_bal": "159,910.05 USD",
+            "total_bal": "106,236.07 USD",
+            "pay_remaining": "12"
+        },
+        {
+            "id": "223-2",
+            "pr_type": "Equipment Lease",
+            "commencement_dt": "11/08/2020",
+            "term": 8,
+            "maturity_dt": "03/14/2021",
+            "pay_amt": "175,582.15 USD",
+            "status": "approved",
+            "pay_frq": "monthly",
+            "principal_bal": "121,511.48 USD",
+            "interest_bal": "106,236.07 USD",
+            "total_bal": "106,236.07 USD",
+            "pay_remaining": "12"
+        },
+        {
+            "id": "323-2",
+            "pr_type": "Equipment Lease",
+            "commencement_dt": "11/08/2020",
+            "term": 8,
+            "maturity_dt": "03/14/2021",
+            "pay_amt": "175,582.15 USD",
+            "status": "approved",
+            "pay_frq": "monthly",
+            "principal_bal": "121,511.48 USD",
+            "interest_bal": "106,236.07 USD",
+            "total_bal": "106,236.07 USD",
+            "pay_remaining": "12"
+        },
+        {
+            "id": "423-2",
+            "pr_type": "Equipment Lease",
+            "commencement_dt": "11/08/2020",
+            "term": 8,
+            "maturity_dt": "03/14/2021",
+            "pay_amt": "175,582.15 USD",
+            "status": "waiting",
+            "pay_frq": "monthly",
+            "principal_bal": "121,511.48 USD",
+            "interest_bal": "106,236.07 USD",
+            "total_bal": "106,236.07 USD",
+            "pay_remaining": "12"
+        }
+    ]
+}

@@ -8,29 +8,13 @@
     <link rel="manifest" href="manifest.json">
     <link rel="apple-touch-icon" href="/example.png">
     <link href="https://fonts.googleapis.com/css2?family=Roboto:wght@400;500;700&display=swap" rel="stylesheet">
+    <link rel="stylesheet" href="app.css">
     <script>
         if(document.cookie.includes('authcookie=ok')){
             document.location.assign('/pwa/contracts.html')
         }
     </script>
     <style>
-        html, body {
-            margin: 0;
-            height: 100%;
-        }
-
-        /* text: #27a4ab */
-        /* button: #00949c */
-
-        body{
-            background-color: #263746;
-            display: flex;
-            flex-direction: column;
-            align-items: center;
-            align-content: center;
-            justify-content: center;
-            font-family: Roboto, Tahoma, sans-serif;
-        }
         #logincontainer, #errorContainer{
             display: flex;
             flex-direction: column;

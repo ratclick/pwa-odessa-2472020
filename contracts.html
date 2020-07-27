@@ -4,13 +4,351 @@
     <meta charset="UTF-8">
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
     <title>Contracts</title>
+    <link href="https://fonts.googleapis.com/css2?family=Roboto:wght@400;500;700&display=swap" rel="stylesheet">
+    <link rel="stylesheet" href="app.css">
     <script>
         if(!document.cookie.includes('authcookie=ok')){
             document.location.assign('/pwa/index.html')
         }
     </script>
+    <style>
+        #fullpage{
+            display: flex;
+            width: 100%;
+            height: 100%;
+            flex-direction: column;
+        }
+
+        #menubar{
+            display: flex;
+            flex-direction: row;
+            width: calc(100% - 20px);
+            height: 68px;
+            padding-left: 20px;
+        }
+
+        .menuItems{
+            display: flex;
+            padding: 0px 15px 0px 15px;
+            justify-content: center;
+            align-items: center;
+            min-width: 100px;
+            height: 100%;
+            color: white;
+        }
+
+        .dropdown{
+            border-top: 4px solid #00949c;
+            position: absolute;
+            border-top-left-radius: 2px;
+            border-top-right-radius: 2px;
+            top: 68px;
+            color: #ffffff;
+            background-color: #263746;
+            min-width: 120px;
+            padding: 10px 5px 10px 15px;
+        }
+
+        .menuClickable{
+            display: inline-flex;
+            justify-content: center;
+            align-items: center;
+            padding: 5px;
+            cursor: pointer;
+        }
+
+        .menuText{
+            color: white;
+            font-family: inherit;
+            font-size: 16px;
+            font-weight: 500;
+        }
+
+        .chevron{
+            margin-left: 10px;
+        }
+
+        .menuIcon{
+            padding-right: 10px;
+        }
+
+        #appBody{
+            min-height: calc(100% - 68px);
+            background-color: #ecf1f7;
+            display: flex;
+            flex-direction: column;
+            align-items: flex-start;
+            justify-content: flex-start;
+            padding: 0px 50px 0px 50px;
+            overflow-y: scroll;
+        }
+
+        #contractCounter{
+            display: flex;
+            min-height: 70px;
+            margin-left: 15px;
+            flex-direction: column;
+            justify-content: center;
+        }
+
+        #contractDiv{
+            width: 100%;
+            display: flex;
+            flex-direction: column;
+            justify-content: center;
+            align-items: center;
+        }
+
+        .contractItem{
+            width: calc(100% - 14px);
+            border-radius: 5px;
+            min-height: 100px;
+            background-color: white;
+            border-bottom: 1px solid #999999;
+            z-index: 1;
+            display: flex;
+            flex-direction: row;
+            flex-wrap: wrap;
+            align-items: center;
+            align-content: center;
+            justify-content: flex-start;
+            position: relative;
+        }
+
+        .contractItem#expand{
+            width: 100%;
+            /* padding: 20px; */
+            background-color: #edf7ff;
+            box-shadow: -3px 0px 4px 0px #999999;
+            z-index: 2;
+            margin-top: -5px;
+        }
+
+        .contractContent{
+            display: flex;
+            flex-direction: column;
+            align-items: flex-start;
+            justify-content: center;
+            min-width: 220px;
+            width: 8%;
+            padding: 15px;
+            height: 40px;
+        }
+
+        .contractContent>span:nth-child(1){
+            font-size: 13px;
+            color: #555555;
+        }
+
+        .contractContent>span:nth-child(2){
+            font-weight: 600;
+            color: #555555;
+        }
+
+        .flyingCaret{
+            position: absolute;
+            top: 12px;
+            right: 15px;
+        }
+
+        .flyingDetails{
+            padding: 5px;
+            display: none;
+            flex-direction: row;
+            align-items: center;
+            position: absolute;
+            right: 0px;
+            bottom: 11px;
+            background-color: #0091ff;
+            color: white;
+        }
+
+        .flyingDetails>span{
+            margin-right: 4px;
+            font-size: 12px;
+        }
+    </style>
 </head>
 <body>
-    
+    <div id='fullpage'>
+        <div id='menubar'>
+            <div class="menuItems">
+                <div class="menuClickable">
+                    <svg class="menuIcon" id="i-home" xmlns="http://www.w3.org/2000/svg" viewBox="0 0 32 32" width="24" height="24" fill="none" stroke="white" stroke-linecap="round" stroke-linejoin="round" stroke-width="1">
+                        <path d="M12 20 L12 30 4 30 4 12 16 2 28 12 28 30 20 30 20 20 Z" />
+                    </svg>
+                    <span class="menuText">Home</span>
+                </div>
+            </div>
+            <div class="menuItems">
+                <div class="menuClickable">
+                    <svg class="menuIcon" id="i-file" xmlns="http://www.w3.org/2000/svg" viewBox="0 0 32 32" width="24" height="24" fill="none" stroke="white" stroke-linecap="round" stroke-linejoin="round" stroke-width="1">
+                        <path d="M6 2 L6 30 26 30 26 10 18 2 Z M18 2 L18 10 26 10" />
+                    </svg>
+                    <span class="menuText">Invoice & Payments</span>
+                    <svg class="chevron" id="i-chevron-bottom" xmlns="http://www.w3.org/2000/svg" viewBox="0 0 32 32" width="12" height="12" fill="none" stroke="currentcolor" stroke-linecap="round" stroke-linejoin="round" stroke-width="1">
+                        <path d="M30 12 L16 24 2 12" />
+                    </svg>
+                </div>
+            </div>
+            <div class="menuItems">
+                <div class="menuClickable">
+                    <svg class="menuIcon" id="i-compose" xmlns="http://www.w3.org/2000/svg" viewBox="0 0 32 32" width="24" height="24" fill="none" stroke="currentcolor" stroke-linecap="round" stroke-linejoin="round" stroke-width="1">
+                        <path d="M27 15 L27 30 2 30 2 5 17 5 M30 6 L26 2 9 19 7 25 13 23 Z M22 6 L26 10 Z M9 19 L13 23 Z" />
+                    </svg>
+                    <span class="menuText">Contracts</span>
+                    <svg class="chevron" id="i-chevron-bottom" xmlns="http://www.w3.org/2000/svg" viewBox="0 0 32 32" width="12" height="12" fill="none" stroke="currentcolor" stroke-linecap="round" stroke-linejoin="round" stroke-width="1">
+                        <path d="M30 12 L16 24 2 12" />
+                    </svg>
+                </div>
+                <div class="dropdown" id="contractDropdown">
+                    woah
+                </div>
+            </div>
+            <div class="menuItems">
+                <div class="menuClickable">
+                    <svg class="menuIcon" id="i-clipboard" xmlns="http://www.w3.org/2000/svg" viewBox="0 0 32 32" width="24" height="24" fill="none" stroke="currentcolor" stroke-linecap="round" stroke-linejoin="round" stroke-width="1">
+                        <path d="M12 2 L12 6 20 6 20 2 12 2 Z M11 4 L6 4 6 30 26 30 26 4 21 4" />
+                    </svg>
+                    <span class="menuText">Applications </span>
+                </div>
+            </div>
+        </div>
+        <div id='appBody'>
+            <div id="contractCounter">
+                <span style="font-weight: 600;">Contracts (<span id="contractCount" style="font: inherit">0</span>)</span>
+            </div>
+            <div id="contractDiv">
+                
+                
+            </div>
+        </div>
+    </div>
 </body>
 </html>
+<script>
+    function getFile(url) {
+        return new Promise((resolve, reject) => {
+            let xhr = new XMLHttpRequest();
+            xhr.open("GET", url);
+            xhr.onload = () => {
+                if (xhr.status >= 200 && xhr.status < 300) {
+                    resolve(xhr.response);
+                } else {
+                    reject(xhr.statusText);
+                }
+            };
+            xhr.onerror = () => reject(xhr.statusText);
+            xhr.send();
+        });
+    }
+
+    // "id": "123-2",
+    // "pr_type": "Equipment Lease",
+    // "commencement_dt": "11/08/2020",
+    // "term": 8,
+    // "maturity_dt": "03/14/2021",
+    // "pay_amt": "175,582.15 USD",
+    // "status": "approved",
+    // "pay_frq": "monthly",
+    // "principal_bal": "121,511.48 USD",
+    // "interest_bal": "106,236.07 USD",
+    // "pay_remaining": "12"
+    let detail_html = '<span>View Details</span><svg id="i-arrow-right" xmlns="http://www.w3.org/2000/svg" viewBox="0 0 32 32" width="18" height="18" fill="none" stroke="white" stroke-linecap="round" stroke-linejoin="round" stroke-width="2">\
+            <path d="M22 6 L30 16 22 26 M30 16 L2 16" />\
+        </svg>';
+
+    let caret_top = '<svg id="i-caret-top" xmlns="http://www.w3.org/2000/svg" viewBox="0 0 32 32" width="24" height="24" fill="#0091ff" stroke="white" stroke-linecap="round" stroke-linejoin="round" stroke-width="2">\
+            <path d="M30 22 L16 6 2 22 Z" />\
+        </svg>';
+
+    let caret_btm = '<svg id="i-caret-bottom" xmlns="http://www.w3.org/2000/svg" viewBox="0 0 32 32" width="24" height="24" fill="#0091ff" stroke="white" stroke-linecap="round" stroke-linejoin="round" stroke-width="2">\
+            <path d="M30 10 L16 26 2 10 Z" />\
+        </svg>';
+
+    let clock_svg = '<svg id="i-clock" xmlns="http://www.w3.org/2000/svg" viewBox="0 0 32 32" width="24" height="24" fill="red" stroke="white" stroke-linecap="round" stroke-linejoin="round" stroke-width="2">\
+            <circle cx="16" cy="16" r="14" />\
+            <path d="M16 8 L16 16 20 20" />\
+        </svg>';
+
+    let checkmark_svg = '<svg id="i-checkmark" xmlns="http://www.w3.org/2000/svg" viewBox="0 0 32 32" width="22" height="22" fill="none" stroke="green" stroke-linecap="round" stroke-linejoin="round" stroke-width="2">\
+            <path d="M2 20 L12 28 30 4" />\
+        </svg>';
+    function prepareContractObjs(){
+        getFile('/pwa/contracts.json').then( (data) => {
+            data = JSON.parse(data);
+            let contractDiv = document.getElementById('contractDiv');
+            let fields = data['fields'];
+            let contracts = data['contracts'];
+            document.getElementById('contractCount').innerText = contracts.length;
+            contracts.forEach( (contract) => {
+                let contractItem = document.createElement('div');
+                contractItem.className = 'contractItem';
+                let count = 0;
+                Object.keys(fields).forEach((field) => {
+                    // fields[field] -> label for field
+                    // contracts[0][field] -> value for field
+                    let content = document.createElement('div');
+                    content.className = 'contractContent';
+                    if (count>=7){
+                        content.style.display = 'none'
+                    }
+                    let span1 = document.createElement('span');
+                    span1.innerText = fields[field];
+                    content.append(span1);
+                    let span2 = document.createElement('span');
+                    if(field==='status'){
+                        if(contract[field]==='waiting'){
+                            span2.innerHTML = clock_svg;
+                        }else{
+                            span2.innerHTML = checkmark_svg;
+                        }
+                    }else{
+                        span2.innerText = contract[field];
+                    }
+                    content.append(span2);
+                    contractItem.append(content);
+                    count ++;
+                });
+                contractDiv.append(contractItem);
+            });
+            var x = document.getElementsByClassName('contractItem')
+            for (let i=0; i<x.length; i++){
+                let caret = document.createElement('div');
+                caret.innerHTML = caret_btm;
+                caret.className = 'flyingCaret';
+                let detail = document.createElement('div');
+                detail.innerHTML = detail_html;
+                detail.className = 'flyingDetails';
+                x[i].append(caret);
+                x[i].append(detail);
+                x[i].addEventListener("click", function(e) {
+                    var newexpand = e.target.closest('.contractItem');
+                    let cur = document.getElementById('expand')
+                    if(cur){
+                        cur.id = '';
+                        console.log(cur.children[cur.children.length-2])
+                        cur.children[cur.children.length-2].innerHTML = caret_btm;
+                        cur.children[cur.children.length-1].style.display = 'none';
+                        for(let cn=7; cn<12; cn++){
+                            cur.children[cn].style.display = 'none'
+                        }
+                    }
+                    if(newexpand.id != 'expand'){
+                        newexpand.id = 'expand';
+                        newexpand.children[newexpand.children.length-2].innerHTML = caret_top;
+                        newexpand.children[newexpand.children.length-1].style.display = 'flex';
+                        for(let cn=7; cn<12; cn++){
+                            newexpand.children[cn].style.display = 'flex'
+                        }
+                    }
+                })
+            }
+        }).catch( (err) => {
+            console.error(err)
+        })
+
+        
+    };
+    prepareContractObjs();
+</script>
