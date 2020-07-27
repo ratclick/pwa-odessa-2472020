@@ -17,7 +17,7 @@
     <link href="https://fonts.googleapis.com/css2?family=Roboto:wght@400;500;700&display=swap" rel="stylesheet">
     <script>
         if(document.cookie.includes('authcookie=ok')){
-            document.location.assign('/pwa/contracts.html   ')
+            document.location.assign('/pwa/contracts.html')
         }
     </script>
     <style>
@@ -310,6 +310,7 @@
         </div>
     </div>
 <script>
+alert('Use id:"user" password:"password" to login');
 function addErrs(errs){
     if (errs.constructor === Array){
         var econ = document.getElementById('errorContainer');
@@ -362,7 +363,7 @@ window.addEventListener("load", () => {
         if(errs.length > 0){
             addErrs(errs);
         }else{
-            if(String(id.value) === 'user' && String(id.value) === 'password'){
+            if(String(id.value) == 'user' && String(pass.value) == 'password'){
                 addCookie()
                 window.location.assign('/pwa/contracts.html')
             }else{
