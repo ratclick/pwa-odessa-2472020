@@ -1,21 +1,25 @@
 <!DOCTYPE html>
-<html>
+<html lang="en">
 <head>
     <meta charset="utf-8">
     <title>Home</title>
-    <script type="text/javascript" src="app.js"></script>
+    <meta name="Description" content="Login to user portal">
     <meta name="viewport" content="width=device-width,initial-scale=1">
-    <link rel="manifest" href="manifest.json">
-    <link rel="apple-touch-icon" href="/example.png">
-    <link href="https://fonts.googleapis.com/css2?family=Roboto:wght@400;500;700&display=swap" rel="stylesheet">
+    <meta name="theme-color" content="#27a4ab"/>
     <link rel="stylesheet" href="app.css">
+    <link rel="manifest" href="manifest.json">
+    <link rel="apple-touch-icon" href="/pwa/images/contract-icon-192.png">
+    <link rel="preconnect" href="https://fonts.gstatic.com/" crossorigin>
+    <link rel="dns-prefetch" href="//fonts.googleapis.com">
+    <link href="https://fonts.googleapis.com/css2?family=Roboto:wght@400;500;700&display=swap" rel="stylesheet">
+    <script type="text/javascript" src="app.js" defer></script>
     <script>
         if(document.cookie.includes('authcookie=ok')){
             document.location.assign('/pwa/contracts.html')
         }
     </script>
     <style>
-        #logincontainer, #errorContainer{
+        #main, #errorContainer{
             display: flex;
             flex-direction: column;
             border-radius: 8px;
@@ -107,6 +111,7 @@
             font-size: 12px;
         }
         #langSelect{
+            background-color: transparent;
             border: 0;
             color: #27a4ab;
             outline: none;
@@ -175,14 +180,14 @@
 
         /* Extra small devices (phones, 600px and down) */
         @media only screen and (max-width: 600px){
-            #logincontainer, #errorContainer{
+            #main, #errorContainer{
                 padding: 20px 0px 20px 0px;
             }
         }
 
         /* Small devices (portrait tablets and large phones, 600px and up) */
         @media only screen and (min-width: 600px){
-            #logincontainer{
+            #main{
                 padding: 20px 0px 20px 0px;
                 width: 50%;
             }
@@ -194,7 +199,7 @@
 
         /* Medium devices (landscape tablets, 768px and up) */
         @media only screen and (min-width: 768px) {
-            #logincontainer{
+            #main{
                 padding: 20px 0px 20px 0px;
                 width: 50%;
             }
@@ -206,7 +211,7 @@
 
         /* Large devices (laptops/desktops, 992px and up) */
         @media only screen and (min-width: 992px) {
-            #logincontainer{
+            #main{
                 padding: 20px 0px 20px 0px;
                 width: 50%;
             }
@@ -218,7 +223,7 @@
 
         /* Extra large devices (large laptops and desktops, 1200px and up) */
         @media only screen and (min-width: 1362px) {
-            #logincontainer{
+            #main{
                 width: 35%;
                 height: 350px;
             }
@@ -245,7 +250,8 @@
 <body>
 </body>
 </html>
-    <div id="logincontainer">
+    <a href="#main" style="visibility: hidden;">Skip to main content</a>
+    <div id="main">
         <form id="loginForm">
         <div id="loginTitle">
             <div>
@@ -254,24 +260,25 @@
         </div>
         <div id="loginbody">
             <div id="loginiddiv">
-                <input type="text" required  pattern="^[a-zA-Z0-9]{3,12}$" value="" placeholder="Username" id="loginid" tabindex="1">
+                <input type="text" required  pattern="^[a-zA-Z0-9]{3,12}$" value="" placeholder="Username" id="loginid">
             </div>
             <div>
-                <input type="password" required pattern="^[a-zA-Z0-9_$.@]{3,20}$" value="" placeholder="Password" id="loginpass" tabindex="2">
-                <img id="hideEye" src="/pwa/images/hide-eye_64b.png" alt="">
+                <input type="password" required pattern="^[a-zA-Z0-9_$.@]{3,20}$" value="" placeholder="Password" id="loginpass">
+                <img id="hideEye" src="/pwa/images/hide-eye-22.png" alt="">
             </div>
             <div style="margin-top: 18px;margin-left: -36px;">
-                <input type="checkbox" required name="tandc" id="tandc" tabindex="3" >
-                <label id="tandclabel" for="tandc">I agree to <a href="" tabindex="4">Terms and Conditions</a></label>
+                <input type="checkbox" required name="tandc" id="tandc">
+                <label id="tandclabel" for="tandc">I agree to <a href="">Terms and Conditions</a></label>
+            </input>
             </div>
         </div>
         <div id="logintail">
             <div>
-                <input type="submit" value="SIGN IN" id="signin" tabindex="5">
+                <input type="submit" value="SIGN IN" id="signin">
             </div>
             <div>
-                <a href="forgotPass.html" tabindex="6" class="assistText">Forgot Password</a>
-                <select name="langSelect" id="langSelect" class="assistText" tabindex="7">
+                <a href="forgotPass.html" class="assistText">Forgot Password</a>
+                <select name="langSelect" id="langSelect" class="assistText">
                     <option value="">English</option>
                     <option value="">Potuguese</option>
                 </select>
@@ -286,7 +293,6 @@
         </div>
     </div>
 <script>
-alert('Use id:"user" password:"password" to login');
 function addErrs(errs){
     if (errs.constructor === Array){
         var econ = document.getElementById('errorContainer');
@@ -353,10 +359,10 @@ window.addEventListener("load", () => {
 document.getElementById('hideEye').onclick = (e) => {
     if (document.getElementById('loginpass').type === 'password'){
         document.getElementById('loginpass').type = 'text';
-        e.target.src = 'http://localhost:9000/pwa/images/show-eye_64b.png';
+        e.target.src = '/pwa/images/show-eye-22.png';
     }else{
         document.getElementById('loginpass').type = 'password';
-        e.target.src = 'http://localhost:9000/pwa/images/hide-eye_64b.png';
+        e.target.src = '/pwa/images/hide-eye-22.png';
     }
 }
 

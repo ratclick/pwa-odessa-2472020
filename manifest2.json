@@ -1,6 +1,6 @@
 {
-    "short_name": "Test Portal",
-    "name": "User Portal : Test",
+    "short_name": "Contracts",
+    "name": "Contracts Portal : Test",
     "description": "Show all contract under user.",
     "icons": [
       {
@@ -25,7 +25,7 @@
         "sizes": "512x512"
       }
     ],
-    "start_url": "/pwa/",
+    "start_url": "/pwa/contracts.html",
     "background_color": "#3367D6",
     "display": "standalone",
     "theme_color": "#3367D6",
